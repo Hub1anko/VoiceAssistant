@@ -1,4 +1,4 @@
 address:
- url: "http://homeassistant.local"
- port: "8123"
-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxMjJjODJmMmFjODI0YjM4OWZmNjc3YzUxMTVjNTllMyIsImlhdCI6MTY5MTQyMTk3MCwiZXhwIjoyMDA2NzgxOTcwfQ.oXuUjufQc5tpxpLuZYTV9r0EUpfQ0vKQg5y2oDmEQ0o"
+  port: '8123'
+  url: http://homeassistant.local
+token: 
