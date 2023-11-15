@@ -7,8 +7,9 @@ import pyaudio
 import numpy as np
 import time
 import os
-from playsound import playsound
+import yaml
 import wave
+from playsound import playsound
 from openwakeword import Model
 from requests import post
 from piper import PiperVoice
@@ -27,11 +28,16 @@ processor_device = 'cpu'
 #set delay for activation
 cooldown = 3 #seconds
 activation_time = 0
-hassurl = "http://192.168.0.139:8123"
+
+with open('config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+
+hassurl = config['address']['url'] + ":" + config['address']['port']
+TOKEN = config['token']
 
 #send message to home assistant
 def postHass(action, data):
-	headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxMjJjODJmMmFjODI0YjM4OWZmNjc3YzUxMTVjNTllMyIsImlhdCI6MTY5MTQyMTk3MCwiZXhwIjoyMDA2NzgxOTcwfQ.oXuUjufQc5tpxpLuZYTV9r0EUpfQ0vKQg5y2oDmEQ0o", "content-type": "application/json"}
+	headers = {"Authorization": "Bearer " + TOKEN, "content-type": "application/json"}
 	response = post(hassurl + action, headers=headers, json=data)
 	response_dict = response.json()
 	#print(response_dict)
